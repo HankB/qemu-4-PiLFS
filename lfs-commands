@@ -1,0 +1,10 @@
+apt-get install bison gawk m4 texinfo
+export LFS=/lfs
+# directory already exists due to mount in qemu.sh
+cd $LFS
+mkdir -v $LFS/sources
+chmod -v a+wt $LFS/sources
+cd $LFS/sources
+wget http://www.intestinate.com/pilfs/scripts/wget-list
+wget -i wget-list -P $LFS/sources
+
