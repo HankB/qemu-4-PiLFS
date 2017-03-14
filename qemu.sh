@@ -9,16 +9,20 @@
 # mount relative to the corrent directory
 export MNT=mnt/rpi
 
-# name of IMG file we'll use
+# name of IMG file we'll use (with /boot, / and /lfs partitions as described above.)
 export IMG=2017-03-02-raspbian-jessie-lite-expanded.img
 
 mkdir -p $MNT
 
 sudo kpartx -a -v $IMG
+# takes a bit of time before the mapper devs are ready
+sleep 1
+
+# /dev files assume this is the first loop device created.(loop0)
 sudo mount /dev/mapper/loop0p2 $MNT
 sudo mount /dev/mapper/loop0p1 $MNT/boot
-mkdir -p ${MNT}/lfs
 
+sudo mkdir -p ${MNT}/lfs
 sudo mount /dev/mapper/loop0p3 $MNT/lfs
 
 sudo cp `which qemu-arm-static` ${MNT}/usr/bin/
