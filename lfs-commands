@@ -1,6 +1,7 @@
 apt-get update
 apt-get upgrade
 apt-get install bison gawk m4 texinfo
+
 export LFS=/lfs
 # directory already exists due to mount in qemu.sh
 cd $LFS
@@ -12,8 +13,25 @@ wget -i wget-list -P $LFS/sources
 wget http://www.intestinate.com/pilfs/scripts/ch5-build.sh
 export LFS_TGT=$(uname -m)-lfs-linux-gnueabihf
 chmod +x ch5-build.sh
+# adduser --disabled-password --gecos "" lfs
 
-su lfs
+# chown -R lfs.lfs /lfs
+
+# fixup symlink to /bin/sh
+mv /bin/sh /bin/sh.sav
+ln -s /bin/bash /bin/sh
+
+# tools 
+mkdir -v $LFS/tools
+ln -sv $LFS/tools /
+
+groupadd lfs
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+
+chown -v lfs $LFS/tools
+chown -v lfs $LFS/sources
+su - lfs
+
 
 ./ch5-build.sh
 

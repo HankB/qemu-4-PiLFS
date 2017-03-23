@@ -33,7 +33,18 @@ sudo mount -o bind /sys ${MNT}/sys
 
 sudo bash -c "echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:' >/dev/null /proc/sys/fs/binfmt_misc/register"
 
-sudo chroot $MNT
+# script to add lfs user if needed
+
+# sudo mkdir -p ${MNT}/usr/local/bin
+# sudo cat > ${MNT}/usr/local/bin/setup-chroot.sh <<EOF
+# if [ ! -d /home/lfs ]
+# then
+#     adduser --disabled-password --gecos "" lfs
+# fi
+# EOF
+# chmod +x ${MNT}/usr/local/bin/setup-chroot.sh
+
+# sudo chroot $MNT setup-chroot.sh
 # and do stuff...
 
 # unwind/clean up
