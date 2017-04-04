@@ -45,8 +45,9 @@ sudo bash -c "echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\
 # chmod +x ${MNT}/usr/local/bin/setup-chroot.sh
 
 # sudo chroot $MNT setup-chroot.sh
+sudo chroot $MNT 
 # and do stuff...
 
 # unwind/clean up
-sudo umount ${MNT}/dev ${MNT}/proc ${MNT}/sys ${MNT}/boot ${MNT}/lfs ${MNT} 
+sudo umount ${MNT}/dev ${MNT}/proc ${MNT}/sys ${MNT}/lfs ${MNT}/boot ${MNT} 
 sudo kpartx -d -v $IMG
