@@ -14,9 +14,7 @@ export IMG=2017-03-02-raspbian-jessie-lite-expanded.img
 
 mkdir -p $MNT
 
-sudo kpartx -a -v $IMG
-# takes a bit of time before the mapper devs are ready
-sleep 1
+sudo kpartx -a -s -v $IMG
 
 # /dev files assume this is the first loop device created.(loop0)
 sudo mount /dev/mapper/loop0p2 $MNT
