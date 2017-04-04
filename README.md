@@ -5,6 +5,10 @@
 * Script a working environment to build LFS using QEMU on Linux.
 * Add scripting for the remaining operations to build a working LFS install for a Raspberry Pi (model B 2 or three.)
 
+## Overview
+
+Snag a copy of a Raspberry Pi image and run it in a QEMU VM (?) in order to build on more potent H/W. In this case Raspbian Lite is the target OS. To gain space it is copied to a micro-SD card and then the partitions are resized and formatted using `gparted` on the host system. The resulting card image is copied off to a disk file which can then be mounted as loop devices and uysed as the host file system for `qemu`. The actual build relies heavily on the scripts found at https://github.com/pilfs/scripts and the instructions provided at http://www.intestinate.com/pilfs/.
+
 ## Requirements
 
 * A working Linux system. Debian Stretch (9, RC) is used here.
@@ -35,11 +39,12 @@ TBD (At present you can copy/paste commands from lfs-commands)
 
 ## Status
 
-Done:
+### Done
 
 * Working QEMU running as ARM (armv7l)
+* Using scripts from https://github.com/pilfs/scripts work completed through Chapter 5.
 
-TODO:
+### TODO
 
 * Script additional login for user 'lfs.'
 * Script other settings such as symlink for sh -> bash.
